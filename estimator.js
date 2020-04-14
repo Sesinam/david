@@ -12,7 +12,7 @@
 
   const cofactor = data.reportedCases * 10;
   const cisfactor = data.reportedCases * 50;
-  const rfactor = 2 ** Math.trunc(days / 3);
+  const rfactor = 2 ** Math.trunc(getDays / 3);
 
   return {
     data,
@@ -23,7 +23,7 @@
       hospitalBedsByRequestedTime: Math.trunc((0.35 * data.totalHospitalBeds) - (0.15 * cofactor * rfactor)),
       casesForICUByRequestedTime: Math.trunc(0.05 * cofactor * rfactor),
       casesForVentilatorsByRequestedTime: Math.trunc(0.02 * cofactor * rfactor),
-      dollarsInFlight: Math.trunc(((cofactor * rfactor * data.region.avgDailyIncomeInUSD * data.region.avgDailyIncomePopulation) / days))
+      dollarsInFlight: Math.trunc(((cofactor * rfactor * data.region.avgDailyIncomeInUSD * data.region.avgDailyIncomePopulation) / getDays))
     },
     severeImpact: {
       currentlyInfected: cisfactor,
@@ -32,7 +32,7 @@
       hospitalBedsByRequestedTime: Math.trunc((0.35 * data.totalHospitalBeds) - (0.15 * cisfactor * rfactor)),
       casesForICUByRequestedTime: Math.trunc(0.05 * cisfactor * rfactor),
       casesForVentilatorsByRequestedTime: Math.trunc(0.02 * cisfactor * rfactor),
-      dollarsInFlight: Math.trunc(((cisfactor * rfactor * data.region.avgDailyIncomeInUSD * data.region.avgDailyIncomePopulation) / days))
+      dollarsInFlight: Math.trunc(((cisfactor * rfactor * data.region.avgDailyIncomeInUSD * data.region.avgDailyIncomePopulation) / getDays))
     }
   };
 };
